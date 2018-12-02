@@ -2,5 +2,5 @@
 
 To run the website  
 ` npm install `  
-` npm run `  
+` npm start `  
 go to `http://localhost:8080/index.html`  
