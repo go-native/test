@@ -1,10 +1,11 @@
 let adVideo = document.querySelector(".ad-video");
 let intervalId = null;
-
+let timeoutId = null;
 document.addEventListener("scroll", handleScroll);
 adVideo.addEventListener("playing", handlePlaying);
+window.addEventListener('resize', handleScroll)
 
-function handleScroll(scrollData) {
+function handleScroll() {
   // Getting sizes of video elements;
   let videoSizes = adVideo.getBoundingClientRect();
   let videoPositionY = videoSizes.top;
@@ -18,12 +19,13 @@ function handleScroll(scrollData) {
       adVideo.play();
       // Registering timeout for tracking the current time of the video;
       intervalId = setInterval(handlePlaying, 1000);
-      console.log("video is playing");
+      timeoutId = setTimeout(printContinuity, 2000)
     }
   } else {
     if (!adVideo.paused) {
       adVideo.pause();
       clearInterval(intervalId);
+      clearTimeout(timeoutId);
       console.log("video is paused");
     }
   }
@@ -48,3 +50,16 @@ function handlePlaying() {
     console.log("100% has passed");
   }
 }
+
+function printContinuity() {
+  console.log('The ad is in viewport for 2 seconds')
+}
+
+
+function sum(a, b) {
+  return a + b;
+}
+
+module.exports = sum;
+
+
